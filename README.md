@@ -112,7 +112,7 @@ is available here:
 ## 👥 Team Members
 
 - **Swapnil Thakur**  
-- **[Teammate Name]**
+- **Satyam Saurav**
 
 ---
 
