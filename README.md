@@ -1,135 +1,143 @@
 # 🔥 IoT Gas & Flame Detection & Alert System (ESP32 + Blynk IoT)
 
-This project is a real-time IoT-based safety monitoring system designed to detect **gas leakage** and **flame hazards** using an ESP32 microcontroller.  
-The system triggers a **buzzer alarm**, displays **live sensor data**, and sends **instant push notifications** to the user via **Blynk IoT**.
+[![Made with ESP32](https://img.shields.io/badge/Microcontroller-ESP32-blue.svg)](#)
+[![IoT Project](https://img.shields.io/badge/Category-IoT-orange.svg)](#)
+[![Blynk IoT](https://img.shields.io/badge/Cloud-Blynk-green.svg)](#)
+[![Language](https://img.shields.io/badge/Language-C++-blue.svg)](#)
+[![Status](https://img.shields.io/badge/Status-Active-success.svg)](#)
+
+A real-time IoT-based **Gas & Flame Detection and Alert System** built using **ESP32**, **MQ Gas Sensor**, **Flame Sensor**, **Blynk IoT Cloud**, and a **local buzzer alarm**.  
+The system monitors gas leakage and fire hazards, triggers an immediate audible alarm, and sends **instant mobile notifications** via the Blynk IoT platform.
 
 ---
 
-## 🚀 Features
+## ⭐ Features
 
-- 🔹 Gas leakage detection (MQ-series gas sensor)
-- 🔹 Flame/fire detection (IR flame sensor)
-- 🔹 Instant mobile alerts using Blynk Events
-- 🔹 Real-time monitoring on Blynk Dashboard
-- 🔹 Adjustable gas threshold (via mobile slider)
-- 🔹 Local buzzer alarm for immediate awareness
-- 🔹 Manual alarm reset from the app
-- 🔹 WiFi-enabled IoT connectivity with ESP32
+- 🔹 Real-time gas leakage detection  
+- 🔹 Instant flame/fire detection  
+- 🔹 Buzzer alarm for immediate awareness  
+- 🔹 Cloud notifications via Blynk Events  
+- 🔹 Live sensor values on Blynk Dashboard  
+- 🔹 Adjustable gas sensitivity threshold  
+- 🔹 Manual alarm reset using mobile app  
+- 🔹 Fault-tolerant readings & smooth updates  
 
 ---
 
 ## 🛠️ Hardware Components
 
-- ESP32 Dev Module (NodeMCU-32S)
-- MQ Gas Sensor (MQ-2 / MQ-5 / MQ-135)
-- IR Flame Sensor Module
-- Active/Passive Buzzer
-- Jumper Wires
-- Breadboard
-- USB Cable (Data Cable)
+| Component            | Description |
+|----------------------|-------------|
+| ESP32 Dev Board      | Main microcontroller & WiFi module |
+| MQ Gas Sensor        | Detects flammable gas concentration |
+| Flame Sensor Module  | Detects fire/infrared flame presence |
+| Active Buzzer        | Local audible alarm |
+| Breadboard & Wires   | Circuit assembly |
+| USB Cable            | Power + programming |
 
 ---
 
-## 🔌 Circuit Connections (ESP32)
+## 🔌 Circuit Connections
 
-| Component         | ESP32 Pin |
-|------------------|-----------|
-| Gas Sensor A0    | GPIO 34   |
-| Flame Sensor D0  | GPIO 27   |
-| Buzzer +         | GPIO 25   |
-| Buzzer -         | GND       |
-| Sensors VCC      | 3.3V / 5V |
-| Sensors GND      | GND       |
+| Sensor/Module | ESP32 Pin |
+|---------------|-----------|
+| Gas Sensor A0 | GPIO 34   |
+| Flame Sensor D0 | GPIO 27 |
+| Buzzer (+)    | GPIO 25   |
+| Buzzer (–)    | GND       |
+| Sensor VCC    | 3.3V / 5V |
+| Sensor GND    | GND       |
 
 ---
 
 ## 📲 Blynk IoT Setup
 
-### 1️⃣ Create a Template  
-- Add device → Select **ESP32**  
-- Copy these values:
-  - `BLYNK_TEMPLATE_ID`
-  - `BLYNK_TEMPLATE_NAME`
-  - `DEVICE_AUTH_TOKEN`
+### Configure these virtual pins:
 
-### 2️⃣ Create Datastreams  
-| Datastream | Type | Pin |
-|------------|-------|-----|
-| Gas Value  | Integer | V0 |
-| Flame State | Integer | V1 |
-| Alarm State | Integer | V2 |
-| Threshold Slider | Integer | V3 |
-| Reset Button | Integer | V4 |
+| Function | Virtual Pin |
+|----------|-------------|
+| Gas Value Display | V0 |
+| Flame Status (1/0) | V1 |
+| Alarm Indicator | V2 |
+| Gas Threshold Slider | V3 |
+| Reset Button | V4 |
 
-### 3️⃣ Create Event for Alerts  
-- Event Name: **alert**  
-- Priority: High  
-- Push Notifications: **Enabled**
+### Create Event for Notifications:
+
+- **Event Name:** `alert`  
+- **Type:** Critical / High Priority  
+- **Push Notifications:** ON  
 
 ---
 
-## 📟 Working Principle
+## 📡 Working Principle
 
-1. ESP32 reads the gas and flame sensor values.
-2. If levels cross the threshold or flame is detected:
-   - Buzzer turns ON  
-   - Blynk event triggers a mobile push notification  
-3. Dashboard displays live values.
-4. User can reset the alarm using a virtual button.
-
----
-
-## 📄 Source Code
-
-The full ESP32 code is available inside the [`/Code`](./Code) folder.  
-It includes:
-
-- WiFi setup  
-- Blynk IoT template integration  
-- Gas + Flame sensor logic  
-- Alarm system  
-- Cloud notifications  
+1. ESP32 reads gas & flame sensors every 300ms  
+2. Threshold logic checks for dangerous levels  
+3. If hazard detected:  
+   - Buzzer = ON  
+   - Alarm State = Active  
+   - Cloud Event Trigger → Mobile Notification  
+4. User may reset alarm from the app  
+5. Normal readings update live on Blynk Dashboard  
 
 ---
 
-## 🖼️ Project Images
+## 🧠 Code
 
-(Add your images here in the `/Images` folder)
+Full ESP32 firmware is located here:  
+👉 [`/Code/main.ino`](Code/main.ino)
 
-- Circuit Diagram  
-- Hardware Setup  
-- Blynk Dashboard  
-- Output Results  
+---
+
+## 📄 Documentation (Visual Proof Included)
+
+The complete minor project report containing:
+
+- Circuit diagrams  
+- Flowcharts  
+- DFD levels  
+- ER diagrams  
+- Hardware photos  
+- System testing screenshots  
+- Explanation & analysis  
+
+is available here:
+
+👉 **[Download Project Report (PDF)](Documentation/Minor_Project_Report.pdf)**  
+*(Rename this link once your actual filename is uploaded.)*
 
 ---
 
 ## 👥 Team Members
 
-- **Your Name**  
-- **Your Teammate’s Name**
+- **Swapnil Thakur**  
+- **[Teammate Name]**
 
 ---
 
-## 📚 Skills Demonstrated
+## 🧰 Skills Demonstrated
 
-- Internet of Things (IoT)
-- Embedded Systems
-- ESP32 Development
-- Sensor Integration
-- Cloud IoT (Blynk)
-- Real-Time Monitoring Systems
-- Circuit Debugging
-- C/C++ (Arduino)
+- Internet of Things (IoT)  
+- Embedded Systems  
+- Microcontroller Programming (ESP32)  
+- Cloud Integration (Blynk IoT)  
+- Sensor Interfacing (MQ/Flame)  
+- Real-Time Monitoring  
+- Event-Driven I/O  
+- Hardware Debugging  
+- C/C++ (Arduino Framework)  
 
 ---
 
 ## 📜 License
 
-This project is licensed under the **MIT License**.
+This project is released under the **MIT License** — free to use and modify with attribution.
 
 ---
 
-## ⭐ Want to Contribute?
+## ⭐ Support & Contributions
 
-Feel free to fork this repository and submit pull requests. Any improvements are welcome!
+Feel free to fork, improve, or open issues.  
+Pull requests are welcome!
 
